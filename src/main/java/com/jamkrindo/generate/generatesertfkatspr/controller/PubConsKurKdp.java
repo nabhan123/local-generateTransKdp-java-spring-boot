@@ -38,14 +38,9 @@ public class PubConsKurKdp {
 
     @GetMapping("/fn-kur-kdp")
     public ResponseEntity<Object> fndDebturKlaim()throws Exception{
-
-//        call klaim daos
-//        TestKlaimDaos testKlaimDaos = new TestKlaimDaos();
         PengajuanKlaimKurDaos pengajuanKlaimKurDaos = new PengajuanKlaimKurDaos();
         List<Map<String,Object>> response = new ArrayList<>();
         List<PengajuanKlaimDto> listData = pengajuanKlaimKurDaos.findDebiturKlaimtoSync();
-        LOG.info("listData :" + listData);
-
         try{
             for (PengajuanKlaimDto reqBody : listData){
                 Map<String,Object> tamp = new HashMap<>();
@@ -70,7 +65,6 @@ public class PubConsKurKdp {
             generateTransNew.insertToTransaction();
         }catch (Exception e){
             throw new Exception(e.getMessage());
-
         }
     }
 
